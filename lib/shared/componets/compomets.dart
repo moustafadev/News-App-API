@@ -2,51 +2,102 @@
 
 import 'package:conditional_builder/conditional_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:news/modules/web_veiw/web_view.dart';
 
-Widget buildArticleItem(model,context) => Padding(
-  padding: const EdgeInsets.all(20.0),
-  child: Row(
-    children: [
-      Container(
-        width: 120.0,
-        height: 120.0,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          image: DecorationImage(
-              fit: BoxFit.cover,
-              image: NetworkImage('${model['urlToImage']}')
-          ),
-        ),
-      ),
-      const SizedBox(width: 15.0,),
-      Expanded(
-        child: SizedBox(
+Widget buildArticleItem(model,context) => InkWell(
+  onTap: (){
+    navigationTo(context, WebViews(model['url']));
+  },
+  child:   Padding(
+
+    padding: const EdgeInsets.all(20.0),
+
+    child: Row(
+
+      children: [
+
+        Container(
+
+          width: 120.0,
+
           height: 120.0,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Text(
-                    '${model['title']}',
-                    style: Theme.of(context).textTheme.bodyText1,
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis
-                ),
-              ),
-              Text(
-                '${model['publishedAt']}',
-                style: const TextStyle(
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.grey
-                ),
-              ),
-            ],
+
+          decoration: BoxDecoration(
+
+            borderRadius: BorderRadius.circular(10.0),
+
+            image: DecorationImage(
+
+                fit: BoxFit.cover,
+
+                image: NetworkImage('${model['urlToImage']}')
+
+            ),
+
           ),
+
         ),
-      ),
-    ],
+
+        const SizedBox(width: 15.0,),
+
+        Expanded(
+
+          child: SizedBox(
+
+            height: 120.0,
+
+            child: Column(
+
+              crossAxisAlignment: CrossAxisAlignment.start,
+
+              mainAxisAlignment: MainAxisAlignment.start,
+
+              children: [
+
+                Expanded(
+
+                  child: Text(
+
+                      '${model['title']}',
+
+                      style: Theme.of(context).textTheme.bodyText1,
+
+                      maxLines: 4,
+
+                      overflow: TextOverflow.ellipsis
+
+                  ),
+
+                ),
+
+                Text(
+
+                  '${model['publishedAt']}',
+
+                  style: const TextStyle(
+
+                      fontSize: 25.0,
+
+                      fontWeight: FontWeight.w500,
+
+                      color: Colors.grey
+
+                  ),
+
+                ),
+
+              ],
+
+            ),
+
+          ),
+
+        ),
+
+      ],
+
+    ),
+
   ),
 );
 
